@@ -1,0 +1,21 @@
+{
+  "formatVersion": 1,
+  "id": "whale-girl",
+  "name": "鲸鱼娘",
+  "image": "../../assets/whale-girl-v2.png",
+  "grid": { "columns": 4, "rows": 4, "rowEdges": [0, 334, 648, 960, 1254] },
+  "rendering": { "logicalSize": 64, "height": 54, "baseline": 60, "anchor": "head", "alphaThreshold": 192 },
+  "neutralFrame": 0,
+  "transition": { "frames": [3, 0], "ms": 110 },
+  "states": { "idle": "idle", "thinking": "thinking", "generating": "generating", "tool": "tool", "waiting": "waiting", "complete": "complete", "error": "error", "offline": "offline" },
+  "actions": {
+    "idle": { "frames": [0, 0, 1, 0, 2, 0, 3, 3], "ms": 240 },
+    "thinking": { "frames": [4, 5, 6, 5, 4], "ms": 210 },
+    "generating": { "frames": [4, 5, 6, 5], "ms": 150 },
+    "tool": { "frames": [12, 13, 14, 15], "ms": 160 },
+    "waiting": { "frames": [8, 9, 10, 9, 11, 3, 3, 3], "ms": 280 },
+    "complete": { "frames": [8, 9, 10, 9, 10, 11, 3], "ms": 160, "once": true },
+    "error": { "frames": [4, 6, 6, 5, 4], "ms": 300 },
+    "offline": { "frames": [1, 1, 1, 1, 1, 1, 0, 1], "ms": 450 }
+  }
+}

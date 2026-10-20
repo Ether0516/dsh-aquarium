@@ -1,0 +1,21 @@
+{
+  "name": "dsh-aquarium",
+  "version": "0.4.0",
+  "description": "DSH desktop pets with maintainable skins, state-driven pixel animation, and settings-only controls.",
+  "repository": {"type":"git","url":"git+https://github.com/Ether0516/dsh-aquarium.git"},
+  "homepage":"https://github.com/Ether0516/dsh-aquarium#readme",
+  "bugs":{"url":"https://github.com/Ether0516/dsh-aquarium/issues"},
+  "engines":{"node":">=20"},
+  "type": "module",
+  "main": "./lib/index.js",
+  "exports": { ".": "./lib/index.js", "./client": "./lib/client.js", "./package.json": "./package.json" },
+  "files": ["lib", "src", "skins", "assets", "native", "docs", "scripts/build.cjs", "scripts/build-native.cjs", "scripts/skin-loader.cjs", "scripts/pack.cjs", "tests", "cordis.patch.yml", "README.md", "CONTRIBUTING.md", "CHANGELOG.md", "SKINS.md", "IMAGE-PROMPT.md", "DEVELOPMENT.md", "LICENSE"],
+  "scripts": { "build": "node scripts/build.cjs", "build:native":"node scripts/build-native.cjs", "test": "node --test tests/*.test.cjs", "pack:local": "node scripts/pack.cjs" },
+  "dsh": {
+    "bundle": { "patch": "./cordis.patch.yml" },
+    "client": { "platform": "web", "inject": ["@deepseek-ai/dsh-client-ui-layout", "@deepseek-ai/dsh-client-ui-session", "@deepseek-ai/dsh-client-ui-conversation", "@deepseek-ai/dsh-client-ui-settings", "@deepseek-ai/dsh-client-connection"], "immediately": true }
+  },
+  "peerDependencies": { "@deepseek-ai/dsh": "0.2.0-rc.2", "@deepseek-ai/dsh-typert-protocol":"0.2.0-rc.2" },
+  "peerDependenciesMeta": { "@deepseek-ai/dsh": { "optional": true }, "@deepseek-ai/dsh-typert-protocol":{"optional":true} },
+  "license": "MIT"
+}

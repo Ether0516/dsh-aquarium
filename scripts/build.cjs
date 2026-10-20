@@ -1,0 +1,12 @@
+const fs=require('node:fs');
+const path=require('node:path');
+const root=path.resolve(__dirname,'..');
+const read=name=>fs.readFileSync(path.join(root,name),'utf8');
+fs.mkdirSync(path.join(root,'lib'),{recursive:true});
+fs.writeFileSync(path.join(root,'lib/index.js'),read('src/index.js'));
+for(const file of ['core.cjs','desktop-host.cjs'])fs.copyFileSync(path.join(root,'src',file),path.join(root,'lib',file));
+const core=read('src/core.cjs').replace(/^module\.exports = .*;$/m,'');
+const skins=require('./skin-loader.cjs').loadSkins(root);
+fs.writeFileSync(path.join(root,'lib/skins.json'),JSON.stringify(skins.map(({imageData,...skin})=>skin),null,2));
+fs.writeFileSync(path.join(root,'lib/client.js'),`window.__ModuleLoader__.load({id:"dsh-aquarium",factory:(require)=>{const module={exports:{}};\n${core}\nconst AQUARIUM_CSS=${JSON.stringify(read('src/pet.css'))};\nconst SKINS=${JSON.stringify(skins)};\n${read('src/controllers.cjs')}\n${read('src/desktop-bridge.cjs')}\n${read('src/client.cjs')}\nreturn module.exports;}});\n`);
+console.log('Built dsh-aquarium offline.');
